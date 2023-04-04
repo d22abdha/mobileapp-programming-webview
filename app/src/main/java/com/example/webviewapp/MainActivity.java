@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-
+    private WebView myWebView;
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
     }
@@ -19,11 +20,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        WebView myWebView = (WebView) findViewById(R.id.WebView1);
+
 
         /*
         * Rename your App. Tip: Values->Strings
