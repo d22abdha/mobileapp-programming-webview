@@ -3,40 +3,78 @@
 
 **Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+Appen ändrades namnet till specifik namn "New project app", aktiverat internetåtkomst för appen
+genom att lägga till denna rad kod "<uses-permission android:name="android.permission.INTERNET" />".
+Dessutom en webb skapats i layout file och ändarade namnet till WebView1 (android:id="@+id/WebView1")
+Därefter skapat id som WebView1 och lokaliserat under onCreate method
+(myWebView = (WebView) findViewById(R.id.WebView1);)
+WebViewClient skapat för att klienten kunna läsa hemsidan och aktiverat även java 
+för att hemsidan ska funka. Html page lagts till och sparat in en text i (<p>hej html</p>)
+Sist har implementerats både external och internal webpage
+myWebView.loadUrl("https://www.facebook.com/");
+myWebView.loadUrl("file:///android_asset/App.html");
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+<resources>
+//här skrevs projekt namnet
+    <string name="app_name">New project app</string>
+</resources>
+   ```
+
+
+
+ ```
+ <WebView
+ // skapat id
+        android:id="@+id/WebView1"
+       />
+        ```
+        
+        
+    ```
+       //decklarerat
+  private WebView myWebView; 
+  
+  //External och internal webpage
+  public void showExternalWebPage(){
+        myWebView.loadUrl("https://www.facebook.com/");
     }
-}
+    public void showInternalWebPage(){
+        myWebView.loadUrl("file:///android_asset/App.html");
+    }   
+    ```
+    
+    
+  ```
+    //Lokaliserat id
+    myWebView = (WebView) findViewById(R.id.WebView1);
+    //skapat webclient
+        myWebView.setWebViewClient(new WebViewClient());
+        //javascript
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+    ```
+
 ```
+    
+        //ropat methoden 
+         showExternalWebPage();
+         showInternalWebPage();
+    ```
+    
+   ```       
+         //Lagt till html page som asset
+         <html>
+        <body>
+        <p>hej html</p>
+        </body>
+        </html>
+    ```
+ 
 
-Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
 
-Läs gärna:
+![](Screenshot_20230406_101821.png)
+![](Screenshot_20230406_102016.png)
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+
